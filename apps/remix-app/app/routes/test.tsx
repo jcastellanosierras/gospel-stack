@@ -8,15 +8,26 @@ export async function loader() {
     apply_access_policies: false
   })
 
-  const users = await edgedbClient.query('select User {**};')
-
+  let users: {
+    username: string,
+    email: string
+  }[] = []
   let success = true
+  let error: string | null = null
+  try {
+    users = await edgedbClient.query('select User {**};')
+  } catch {
+    success = false
+    error = "Error en la base de datos"
+  }
+
   if (!users) success = false
 
   return json(
     {
       success: success,
-      users: users
+      users: users,
+      error: error
     },
     {
       status: success ? 200 : 400
