@@ -203,7 +203,7 @@ jobs:
         with:
           registry: registry.fly.io
           username: x
-          password: ${{ secrets.FLY_API_TOKEN }}
+          password: gospel-stack
 
       - name: 🐳 Docker build
         uses: docker/build-push-action@v4
