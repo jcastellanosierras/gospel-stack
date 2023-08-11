@@ -73,6 +73,7 @@
       "cache": false
     }
   },
+  "globalDotEnv": [".env"],
   "globalDependencies": [".env"],
   "globalEnv": [
     "NODE_ENV",

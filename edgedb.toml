@@ -1,0 +1,4 @@
+[edgedb]
+server-version = "3.2"
+[project]
+schema-dir = "packages/edgedb-database/dbschema"
