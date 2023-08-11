@@ -200,7 +200,7 @@ jobs:
 
       - name: 🔑 Fly Registry Auth
         run: |
-          flyctl auth login ${{ secrets.FLY_API_TOKEN }}
+          flyctl auth login gospel-stack
           flyctl auth docker
         # uses: docker/login-action@v2
         # with:
