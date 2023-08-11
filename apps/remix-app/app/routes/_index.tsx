@@ -20,19 +20,26 @@ import {
 // import { Checkbox } from "@remix-gospel-stack/ui/checkbox";
 
 import Service, { helloWorld } from "~/services.server.ts";
+import { getClientWithoutACLs } from "~/utils/db.server.ts";
 
 export const loader = async ({ request: _request }: LoaderArgs) => {
   const users = await Service.userRepository.getUsers();
+  const edgedbUsers = await getClientWithoutACLs().query('select User {**};') as {
+    id: string,
+    username: string,
+    email: string,
+  }[]
   const salesPersons = getSalesPersonDirectory();
   return json({
     users,
+    edgedbUsers,
     serverValue: helloWorld("Remix Turborepo"),
     salesPersons,
   });
 };
 
 export default function Index() {
-  const { serverValue, users, salesPersons } = useLoaderData<typeof loader>();
+  const { serverValue, users, edgedbUsers, salesPersons } = useLoaderData<typeof loader>();
   return (
     <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
       <div className="relative sm:pb-16 sm:pt-8">
@@ -178,6 +185,17 @@ export default function Index() {
                   {users.length > 0 ? (
                     <React.Fragment>
                       {users.map((user) => (
+                        <div key={user.id}>{JSON.stringify(user)}</div>
+                      ))}
+                    </React.Fragment>
+                  ) : (
+                    <div>No user in the database</div>
+                  )}
+                </blockquote>
+                <blockquote className="prose">
+                  {edgedbUsers.length > 0 ? (
+                    <React.Fragment>
+                      {edgedbUsers.map((user) => (
                         <div key={user.id}>{JSON.stringify(user)}</div>
                       ))}
                     </React.Fragment>

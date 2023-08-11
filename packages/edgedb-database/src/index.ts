@@ -11,4 +11,10 @@ export const getClientWithGlobals = (id: uuid) => {
   })
 }
 
+export const getClientWithoutACLs = () => {
+  return client.withConfig({
+    apply_access_policies: false
+  })
+}
+
 export { client, e }
