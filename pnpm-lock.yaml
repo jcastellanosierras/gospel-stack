@@ -78,9 +78,6 @@ importers:
       '@remix-gospel-stack/database':
         specifier: workspace:*
         version: link:../../packages/database
-      '@remix-gospel-stack/edgedb-database':
-        specifier: workspace:*
-        version: link:../../packages/edgedb-database
       '@remix-gospel-stack/internal-nobuild':
         specifier: workspace:*
         version: link:../../packages/internal-nobuild
