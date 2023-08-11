@@ -1,1 +1,0 @@
-export * from '@remix-gospel-stack/edgedb-database'

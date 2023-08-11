@@ -16,19 +16,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@remix-gospel-stack/ui/card";
+import { edgebUserRepository } from '@remix-gospel-stack/domain'
 
 // import { Checkbox } from "@remix-gospel-stack/ui/checkbox";
 
 import Service, { helloWorld } from "~/services.server.ts";
-import { getClientWithoutACLs } from "~/utils/db.server.ts";
 
 export const loader = async ({ request: _request }: LoaderArgs) => {
   const users = await Service.userRepository.getUsers();
-  const edgedbUsers = await getClientWithoutACLs().query('select User {**};') as {
-    id: string,
-    username: string,
-    email: string,
-  }[]
+  const edgedbUsers = await edgebUserRepository.getUsers()
   const salesPersons = getSalesPersonDirectory();
   return json({
     users,

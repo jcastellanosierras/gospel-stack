@@ -10,7 +10,7 @@ export default {
     "@remix-gospel-stack/database",
     "@remix-gospel-stack/business",
     "@remix-gospel-stack/ui",
-    "@remix-gospel-stack/edgedb-database",
+    // "@remix-gospel-stack/edgedb-database",
   ],
   watchPaths: [
     "../../packages/ui/src/**/*",
@@ -18,6 +18,7 @@ export default {
     "../../packages/database/src/**/*",
     "../../packages/internal-nobuild/src/**/*",
     "../../packages/edgedb-database/src/**/*",
+    "../../packages/domain/src/**/*",
   ],
   tailwind: true,
   postcss: true,
